@@ -18,6 +18,11 @@ namespace Training.Application.Books
                 _books.Add(new Book { Id = i, ISBN = $"XXX-{i}{i}", Name = $"Book {i}", Author = $"Author {i}" });
         }
 
+        public void Create(Book book)
+        {
+            _books.Add(book);
+        }
+
         public IEnumerable<Book> Get()
         {
             return _books;
