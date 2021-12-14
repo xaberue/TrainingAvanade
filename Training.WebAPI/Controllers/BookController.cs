@@ -26,6 +26,14 @@ namespace Training.WebAPI.Controllers
             return Ok(books);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var book = _bookService.Get(id);
+
+            return Ok(book);
+        }
+
         [HttpPost]
         public IActionResult Post(Book book)
         {
@@ -38,6 +46,14 @@ namespace Training.WebAPI.Controllers
         public IActionResult Put(Book book) 
         {
             _bookService.Update(book);
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id) 
+        {
+            _bookService.Delete(id);
 
             return Ok();
         }

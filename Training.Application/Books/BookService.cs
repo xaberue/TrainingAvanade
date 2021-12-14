@@ -28,11 +28,21 @@ namespace Training.Application.Books
             return _books;
         }
 
+        public Book Get(int id)
+        {
+            return _books.FirstOrDefault(x => x.Id == id);
+        }
+
         public void Update(Book book)
         {
             _books = _books.Where(x => x.Id != book.Id).ToList();
 
             _books.Add(book);
+        }
+
+        public void Delete(int id)
+        {
+            _books = _books.Where(x => x.Id != id).ToList();
         }
     }
 }
