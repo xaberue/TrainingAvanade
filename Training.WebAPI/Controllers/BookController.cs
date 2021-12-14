@@ -29,5 +29,13 @@ namespace Training.WebAPI.Controllers
             _bookService.Update(book);
             return Ok();
         }
+
+        [HttpPost]
+        public IActionResult Post(Book book)
+        {
+            _bookService.Create(book);
+
+            return Ok();
+        }
     }
 }

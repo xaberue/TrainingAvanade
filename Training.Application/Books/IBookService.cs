@@ -7,5 +7,6 @@ namespace Training.Application.Books
     {
         IEnumerable<Book> Get();
         void Update(Book book);
+        void Create(Book book);
     }
 }

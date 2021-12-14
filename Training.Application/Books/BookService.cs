@@ -27,5 +27,10 @@ namespace Training.Application.Books
 
             _books.Add(book);
         }
+
+        public void Create(Book book)
+        {
+            _books.Add(book);
+        }
     }
 }
