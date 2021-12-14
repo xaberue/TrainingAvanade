@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Training.Application.Books;
+using Training.Core.Models;
 
 namespace Training.WebAPI.Controllers
 {
@@ -20,6 +21,13 @@ namespace Training.WebAPI.Controllers
         {
             var books = _bookService.GetType();
             return Ok(books);
+        }
+
+        [HttpPut]
+        public IActionResult Put(Book book)
+        {
+            _bookService.Update(book);
+            return Ok();
         }
     }
 }
