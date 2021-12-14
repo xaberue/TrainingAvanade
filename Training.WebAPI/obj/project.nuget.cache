@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GjmbmLtKTxtNRkwHTOQ9jbaY8gx0A9nzBodF+ctyQOCB8Wkh4gPkt3mkAs2O+UOQvUlh6tVMUyrbp9tNVHUGBA==",
+  "dgSpecHash": "Y8W5qwKBPZwEO/ch/nYhjArMVu3yr4/n5lahFxArIPpxG2aib6rtDdPzoZytexYrvpXrZLzROUNQjRdWs8XNvQ==",
   "success": true,
-  "projectFilePath": "D:\\Workspace\\Test\\API\\Training.WebAPI\\Training.WebAPI\\Training.WebAPI.csproj",
+  "projectFilePath": "D:\\Workspace\\Test\\TrainingAvanade\\Training.WebAPI\\Training.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\xavi_\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\xavi_\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

@@ -198,11 +198,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Workspace\\Test\\API\\Training.WebAPI\\Training.WebAPI\\Training.WebAPI.csproj",
+      "projectUniqueName": "D:\\Workspace\\Test\\TrainingAvanade\\Training.WebAPI\\Training.WebAPI.csproj",
       "projectName": "Training.WebAPI",
-      "projectPath": "D:\\Workspace\\Test\\API\\Training.WebAPI\\Training.WebAPI\\Training.WebAPI.csproj",
+      "projectPath": "D:\\Workspace\\Test\\TrainingAvanade\\Training.WebAPI\\Training.WebAPI.csproj",
       "packagesPath": "C:\\Users\\xavi_\\.nuget\\packages\\",
-      "outputPath": "D:\\Workspace\\Test\\API\\Training.WebAPI\\Training.WebAPI\\obj\\",
+      "outputPath": "D:\\Workspace\\Test\\TrainingAvanade\\Training.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\xavi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
