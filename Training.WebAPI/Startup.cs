@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Training.Application.Books;
+using Training.WebAPI.Helpers;
 
 namespace Training.WebAPI
 {
@@ -32,6 +33,7 @@ namespace Training.WebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Training.WebAPI", Version = "v1" });
             });
 
+            services.AddTransient<ICustomDateTimeProvider, CustomDateTimeProvider>();
             services.AddTransient<IBookService, BookService>();
         }
 

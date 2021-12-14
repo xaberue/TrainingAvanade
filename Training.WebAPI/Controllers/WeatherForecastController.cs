@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Training.WebAPI.Helpers;
 
 namespace Training.WebAPI.Controllers
 {
@@ -23,8 +24,10 @@ namespace Training.WebAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> Get([FromServices] ICustomDateTimeProvider customDateTimeProvider)
         {
+            var systemDate = customDateTimeProvider.GetCurrentSystemDate();
+
             _logger.LogInformation("GET WeatherForecast invoked");
 
             var rng = new Random();
