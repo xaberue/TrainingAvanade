@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Training.Application.Books;
+using Training.WebAPI.Controllers.Helpers;
 
 namespace Training.WebAPI
 {
@@ -30,6 +32,9 @@ namespace Training.WebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Training.WebAPI", Version = "v1" });
             });
+
+            services.AddTransient<ICustomDateTimeProvider, CustomDateTimeProvider>();
+            services.AddTransient<IBookService, BookService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
