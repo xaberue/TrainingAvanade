@@ -34,7 +34,7 @@ namespace Training.WebAPI
             });
 
             services.AddTransient<ICustomDateTimeProvider, CustomDateTimeProvider>();
-            services.AddTransient<IBookService, BookService>();
+            services.AddSingleton<IBookService, BookService>(); //TODO: Temporary for training purposes as singleton
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
