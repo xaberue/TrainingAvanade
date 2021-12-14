@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Training.WebAPI
@@ -20,6 +21,10 @@ namespace Training.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging(loggingBuilder => {
+                loggingBuilder.AddFile("app.log", append: true);
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
