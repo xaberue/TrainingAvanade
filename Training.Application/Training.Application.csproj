@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Training.Core\Training.Core.csproj" />
+    <ProjectReference Include="..\Training.DAL\Training.DAL.csproj" />
   </ItemGroup>
 
 </Project>
