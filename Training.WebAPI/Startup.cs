@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Training.Application.Books;
+using Training.Application.Reservations;
 using Training.Core.Repositories;
 using Training.DAL;
 using Training.WebAPI.Helpers;
@@ -38,6 +39,8 @@ namespace Training.WebAPI
             services.AddTransient<ICustomDateTimeProvider, CustomDateTimeProvider>();
             services.AddTransient<IBookService, BookService>();
             services.AddSingleton<IBookRepository, BookRepository>();
+            services.AddTransient<IReservationService, ReservationService>();
+            services.AddSingleton<IReservationRepository, ReservationRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

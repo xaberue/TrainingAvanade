@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Training.Application.Books;
-using Training.Core.Models;
 
 namespace Training.WebAPI.Controllers
 {
