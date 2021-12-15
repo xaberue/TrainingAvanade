@@ -4,5 +4,5 @@
 
 **/obj
 **/bin
-/.vs/Training.WebAPI
+/.vs
 /Training.WebAPI/app.log

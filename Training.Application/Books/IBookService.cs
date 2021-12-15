@@ -5,10 +5,10 @@ namespace Training.Application.Books
 {
     public interface IBookService
     {
-        IEnumerable<Book> Get();
-        Book Get(int id);
-        void Update(Book book);
-        void Create(Book book);
-        void Delete(int id);
+        IEnumerable<BookDto> Get();
+        BookDto Get(string isbn);
+        void Update(BookDto book);
+        void Create(BookDto book);
+        void Delete(string isbn);
     }
 }

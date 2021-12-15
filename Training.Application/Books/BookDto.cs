@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Training.Core.Contracts;
 
-namespace Training.Core.Models
+namespace Training.Application.Books
 {
-    public class Book : IRemovable
+    public class BookDto
     {
-        public Guid Id { get; set; }
         public string ISBN { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

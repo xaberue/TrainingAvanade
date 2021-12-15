@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Training.Application\Training.Application.csproj" />
+    <ProjectReference Include="..\Training.DAL\Training.DAL.csproj" />
   </ItemGroup>
 
 </Project>

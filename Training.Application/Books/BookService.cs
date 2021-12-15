@@ -4,41 +4,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Training.Core.Models;
+using Training.Core.Repositories;
 
 namespace Training.Application.Books
 {
     public class BookService : IBookService
     {
-        private List<Book> _books;
-        public BookService()
+        private readonly IBookRepository _bookRepository;
+        public BookService(IBookRepository bookRepository)
         {
-            _books = new List<Book>();
+            _bookRepository = bookRepository;
+        }
+        public void Create(BookDto dto)
+        {
+            var book = Map(dto);
 
-            for (int i = 0; i < 5; i++)
-                _books.Add(new Book { Id = i, ISBN = $"XXX-{i}{i}", Name = $"Book {i}", Author = $"Author {i}" });
-        }
-        public IEnumerable<Book> Get()
-        {
-            return _books;
-        }
-        public Book Get(int id)
-        {
-            return _books.FirstOrDefault(x => x.Id == id);
-        }
-        public void Update(Book book)
-        {
-            _books = _books.Where(x => x.Id != book.Id).ToList();
+            book.Id = Guid.NewGuid();
 
-            _books.Add(book);
+            _bookRepository.Create(book);
+        }
+        public IEnumerable<BookDto> Get()
+        {
+            return _bookRepository.Get().Select(MapEntity);
+        }
+        public BookDto Get(string isbn)
+        {
+            return MapEntity(_bookRepository.Get(isbn));
+        }
+        public void Update(BookDto dto)
+        {
+            var book = _bookRepository.Get(dto.ISBN);
+
+            book.Author = dto.Author;
+            book.Name = dto.Name;
+
+            _bookRepository.Update(book);
         }
 
-        public void Create(Book book)
+        public void Delete(string isbn)
         {
-            _books.Add(book);
+            var book = _bookRepository.Get(isbn);
+
+            book.IsDeleted = true;
+
+            _bookRepository.Update(book);
         }
-        public void Delete(int id)
+        private Book Map (BookDto dto)
         {
-            _books = _books.Where(x => x.Id != id).ToList();
+            return new Book
+            {
+                ISBN = dto.ISBN,
+                Name = dto.Name,
+                Author = dto.Author
+            };
+        }
+        private BookDto MapEntity(Book book)
+        {
+            return new BookDto
+            {
+                ISBN = book.ISBN,
+                Name = book.Name,
+                Author = book.Author
+            };
         }
     }
 }

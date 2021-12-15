@@ -4,10 +4,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Training.WebAPI", "Training.WebAPI\Training.WebAPI.csproj", "{A8D936C6-4278-4C31-99C1-980F2BB340DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CC182E41-ECEB-40A2-A966-942B42D4C38D} = {CC182E41-ECEB-40A2-A966-942B42D4C38D}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Core", "Training.Core\Training.Core.csproj", "{4109A43B-D40E-4E18-9B67-CBC598A6DFE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Training.Core", "Training.Core\Training.Core.csproj", "{4109A43B-D40E-4E18-9B67-CBC598A6DFE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Application", "Training.Application\Training.Application.csproj", "{F9447E24-CD12-46A2-8E24-C724D5084ADD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Training.Application", "Training.Application\Training.Application.csproj", "{F9447E24-CD12-46A2-8E24-C724D5084ADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.DAL", "Training.DAL\Training.DAL.csproj", "{CC182E41-ECEB-40A2-A966-942B42D4C38D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4109A43B-D40E-4E18-9B67-CBC598A6DFE5} = {4109A43B-D40E-4E18-9B67-CBC598A6DFE5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,10 @@ Global
 		{F9447E24-CD12-46A2-8E24-C724D5084ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9447E24-CD12-46A2-8E24-C724D5084ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9447E24-CD12-46A2-8E24-C724D5084ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC182E41-ECEB-40A2-A966-942B42D4C38D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC182E41-ECEB-40A2-A966-942B42D4C38D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC182E41-ECEB-40A2-A966-942B42D4C38D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC182E41-ECEB-40A2-A966-942B42D4C38D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
