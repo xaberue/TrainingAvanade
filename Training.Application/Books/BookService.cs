@@ -1,48 +1,80 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Training.Core.Models;
+using Training.Core.Repositories;
 
 namespace Training.Application.Books
 {
     public class BookService : IBookService
     {
 
-        private List<Book> _books;
+        private readonly IBookRepository _bookRepository;
 
 
-        public BookService()
+        public BookService(IBookRepository bookRepository)
         {
-            _books = new List<Book>();
-
-            for (int i = 0; i < 5; i++)
-                _books.Add(new Book { Id = i, ISBN = $"XXX-{i}{i}", Name = $"Book {i}", Author = $"Author {i}" });
+            _bookRepository = bookRepository;
         }
 
-        public void Create(Book book)
+
+        public void Create(BookDto dto)
         {
-            _books.Add(book);
+            var book = Map(dto);
+
+            book.Id = Guid.NewGuid();
+
+            _bookRepository.Create(book);
         }
 
-        public IEnumerable<Book> Get()
+        public IEnumerable<BookDto> Get()
         {
-            return _books;
+            return _bookRepository.Get().Select(MapEntity);
         }
 
-        public Book Get(int id)
+        public BookDto Get(string isbn)
         {
-            return _books.FirstOrDefault(x => x.Id == id);
+            return MapEntity(_bookRepository.Get(isbn));
         }
 
-        public void Update(Book book)
+        public void Update(BookDto dto)
         {
-            _books = _books.Where(x => x.Id != book.Id).ToList();
+            var book = _bookRepository.Get(dto.ISBN);
 
-            _books.Add(book);
+            book.Author = dto.Author;
+            book.Name = dto.Name;
+
+            _bookRepository.Update(book);
         }
 
-        public void Delete(int id)
+        public void Delete(string isbn)
         {
-            _books = _books.Where(x => x.Id != id).ToList();
+            var book = _bookRepository.Get(isbn);
+
+            book.IsDeleted = true;
+
+            _bookRepository.Update(book);
+        }
+
+
+        private Book Map(BookDto dto) 
+        {
+            return new Book
+            {
+                ISBN = dto.ISBN,
+                Name = dto.Name,
+                Author = dto.Author
+            };
+        }
+
+        private BookDto MapEntity(Book dto)
+        {
+            return new BookDto
+            {
+                ISBN = dto.ISBN,
+                Name = dto.Name,
+                Author = dto.Author
+            };
         }
     }
 }
