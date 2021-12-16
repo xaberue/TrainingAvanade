@@ -19,5 +19,12 @@ namespace Training.DAL
             return _trainingDbContext.Users
                 .FirstOrDefault(x => x.Name == username && x.Password == password);
         }
+
+        public User Get(string userIdentifier)
+        {
+            return _trainingDbContext.Users
+                .FirstOrDefault(x => x.NationalIdentifier == userIdentifier);
+        }
+
     }
 }

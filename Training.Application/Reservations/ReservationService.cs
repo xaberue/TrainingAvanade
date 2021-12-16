@@ -11,26 +11,32 @@ namespace Training.Application.Reservations
     {
 
         private readonly IReservationRepository _reservationRepository;
+        private readonly IBookRepository _bookRepository;
+        private readonly IUserRepository _userRepository;
 
 
         public ReservationService(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
             _reservationRepository = unitOfWork.ReservationRepository;
+            _bookRepository = unitOfWork.BookRepository;
+            _userRepository = unitOfWork.UserRepository;
         }
 
         public IEnumerable<ReservationDto> Get(Guid userId)
         {
-            var user = new User();
-
             return _reservationRepository
-                .GetByUser(user)
+                .GetByUser(userId)
                 .Select(x => MapEntity(x));
         }
 
         public void Create(ReservationDto reservationDto)
         {
-            var reservation = MapDto(reservationDto);
+            var book = _bookRepository.Get(reservationDto.BookISBN);
+            var user = _userRepository.Get(reservationDto.UserIdentifier);
+            var reservation = MapDto(reservationDto, book, user);
+
+            reservation.Id = Guid.NewGuid();
 
             _reservationRepository.Create(reservation);
             _unitOfWork.CommitTransaction();
@@ -62,20 +68,20 @@ namespace Training.Application.Reservations
             return new ReservationDto
             {
                 Id = entity.Id,
-                //UserId = entity.UserId,
-                //BookId = entity.BookId,
+                UserIdentifier = entity.User.NationalIdentifier,
+                BookISBN = entity.Book.ISBN,
                 CreationDate = entity.CreationDate,
                 ExpectedDeliveryDate = entity.ExpectedDeliveryDate,
             };
         }
 
-        private Reservation MapDto(ReservationDto entity)
+        private Reservation MapDto(ReservationDto entity, Book book, User user)
         {
             return new Reservation
             {
                 Id = entity.Id,
-                //UserId = entity.UserId,
-                //BookId = entity.BookId,
+                User = user,
+                Book = book,
                 CreationDate = entity.CreationDate,
                 ExpectedDeliveryDate = entity.ExpectedDeliveryDate,
             };

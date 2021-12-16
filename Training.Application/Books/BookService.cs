@@ -32,7 +32,8 @@ namespace Training.Application.Books
 
         public IEnumerable<BookDto> Get()
         {
-            return _bookRepository.Get().Select(MapEntity);
+            return _bookRepository.Get()
+                .Select(MapEntity);
         }
 
         public BookDto Get(string isbn)

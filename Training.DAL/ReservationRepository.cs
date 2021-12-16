@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Training.Core.Models;
@@ -30,10 +31,13 @@ namespace Training.DAL
                 .FirstOrDefault(x => x.Id == reservationId);
         }
 
-        public IEnumerable<Reservation> GetByUser(User user)
+        public IEnumerable<Reservation> GetByUser(Guid userId)
         {
-            return _trainingDbContext.Reservations
-                .Where(x => x.User == user);
+            return _trainingDbContext.Users
+                .Include(x => x.Reservations).ThenInclude(x => x.Book)
+                .FirstOrDefault(x => x.Id == userId)
+                .Reservations
+                .Where(x => !x.IsDeleted);
         }
 
         public void Update(Reservation reservation)
