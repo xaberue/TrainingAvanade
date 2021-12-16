@@ -19,8 +19,10 @@ namespace Training.Application.Reservations
 
         public IEnumerable<ReservationDto> Get(Guid userId)
         {
+            var user = new User();
+
             return _reservationRepository
-                .GetByUser(userId)
+                .GetByUser(user)
                 .Select(x => MapEntity(x));
         }
 
@@ -55,8 +57,8 @@ namespace Training.Application.Reservations
             return new ReservationDto
             {
                 Id = entity.Id,
-                UserId = entity.UserId,
-                BookId = entity.BookId,
+                //UserId = entity.UserId,
+                //BookId = entity.BookId,
                 CreationDate = entity.CreationDate,
                 ExpectedDeliveryDate = entity.ExpectedDeliveryDate,
             };
@@ -67,8 +69,8 @@ namespace Training.Application.Reservations
             return new Reservation
             {
                 Id = entity.Id,
-                UserId = entity.UserId,
-                BookId = entity.BookId,
+                //UserId = entity.UserId,
+                //BookId = entity.BookId,
                 CreationDate = entity.CreationDate,
                 ExpectedDeliveryDate = entity.ExpectedDeliveryDate,
             };

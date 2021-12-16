@@ -31,6 +31,8 @@ namespace Training.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("DbConnection");
+
             services.AddLogging(loggingBuilder => {
                 loggingBuilder.AddFile("app.log", append: true);
             });
@@ -46,10 +48,13 @@ namespace Training.WebAPI
 
             services.AddTransient<ICustomDateTimeProvider, CustomDateTimeProvider>();
             services.AddTransient<IBookService, BookService>();
-            services.AddSingleton<IBookRepository, BookRepository>();
             services.AddTransient<IReservationService, ReservationService>();
-            services.AddSingleton<IReservationRepository, ReservationRepository>();
-            services.AddSingleton<IUserRepository, UserRepository>();
+            
+            services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IReservationRepository, ReservationRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddScoped(x => new TrainingDbContext(connectionString));
 
             services.AddScoped<ClientActionInvokedMiddleware>();
             services.AddScoped<RequestCultureMiddleware>();

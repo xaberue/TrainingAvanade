@@ -9,40 +9,36 @@ namespace Training.DAL
     public class ReservationRepository : IReservationRepository
     {
 
-        private List<Reservation> _reservations;
+        private readonly TrainingDbContext _trainingDbContext;
 
 
-        public ReservationRepository()
+        public ReservationRepository(TrainingDbContext trainingDbContext)
         {
-            _reservations = new List<Reservation> 
-            { 
-                new Reservation{ Id = Guid.NewGuid(), UserId = Guid.Parse("4c3b999f-64a5-4dce-a08c-c0d426944240"), CreationDate = DateTime.UtcNow, ExpectedDeliveryDate = DateTime.Now.AddDays(15), BookId = Guid.NewGuid() },
-                new Reservation{ Id = Guid.NewGuid(), UserId = Guid.Parse("4c3b999f-64a5-4dce-a08c-c0d426944240"), CreationDate = DateTime.UtcNow, ExpectedDeliveryDate = DateTime.Now.AddDays(15), BookId = Guid.NewGuid() },
-                new Reservation{ Id = Guid.NewGuid(), UserId = Guid.Parse("84d9e693-2340-4a96-886e-4eb410ca6bfe"), CreationDate = DateTime.UtcNow, ExpectedDeliveryDate = DateTime.Now.AddDays(15), BookId = Guid.NewGuid() }
-            };
+            _trainingDbContext = trainingDbContext;
         }
 
 
         public void Create(Reservation reservation)
         {
-            _reservations.Add(reservation);
+            _trainingDbContext.Reservations
+                .Add(reservation);
         }
 
         public Reservation GetById(Guid reservationId)
         {
-            return _reservations.FirstOrDefault(x => x.Id == reservationId);
+            return _trainingDbContext.Reservations
+                .FirstOrDefault(x => x.Id == reservationId);
         }
 
-        public IEnumerable<Reservation> GetByUser(Guid userId)
+        public IEnumerable<Reservation> GetByUser(User user)
         {
-            return _reservations.Where(x => x.UserId == userId && !x.IsDeleted);
+            return _trainingDbContext.Reservations
+                .Where(x => x.User == user);
         }
 
         public void Update(Reservation reservation)
         {
-            _reservations = _reservations.Where(x => x.Id != reservation.Id).ToList();
-
-            _reservations.Add(reservation);
+            _trainingDbContext.Reservations.Update(reservation);
         }
     }
 }
