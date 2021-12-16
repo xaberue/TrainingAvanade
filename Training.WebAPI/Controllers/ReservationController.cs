@@ -6,7 +6,6 @@ using Training.Application.Reservations;
 namespace Training.WebAPI.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]")]
     public class ReservationController : ControllerBase
     {

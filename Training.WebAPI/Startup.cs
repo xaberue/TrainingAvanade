@@ -50,6 +50,8 @@ namespace Training.WebAPI
             services.AddTransient<IReservationService, ReservationService>();
             services.AddSingleton<IReservationRepository, ReservationRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
+
+            services.AddTransient<RequestCultureMiddleware>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -65,6 +67,8 @@ namespace Training.WebAPI
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<RequestCultureMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
