@@ -21,7 +21,7 @@ namespace Training.WebAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var books = _bookService.GetType();
+            var books = _bookService.Get();
             return Ok(books);
         }
 

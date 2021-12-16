@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Training.Application.Base;
 using Training.Core.Models;
 using Training.Core.Repositories;
 
 namespace Training.Application.Books
 {
-    public class BookService : IBookService
+    public class BookService : ServiceBase, IBookService
     {
         private readonly IBookRepository _bookRepository;
-        public BookService(IBookRepository bookRepository)
+        public BookService(IUnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
-            _bookRepository = bookRepository;
+            _bookRepository = unitOfWork.BookRepository;
         }
         public void Create(BookDto dto)
         {
@@ -22,6 +24,7 @@ namespace Training.Application.Books
             book.Id = Guid.NewGuid();
 
             _bookRepository.Create(book);
+            _unitOfWork.CommitTransaction();
         }
         public IEnumerable<BookDto> Get()
         {
@@ -39,6 +42,7 @@ namespace Training.Application.Books
             book.Name = dto.Name;
 
             _bookRepository.Update(book);
+            _unitOfWork.CommitTransaction();
         }
 
         public void Delete(string isbn)
@@ -48,6 +52,7 @@ namespace Training.Application.Books
             book.IsDeleted = true;
 
             _bookRepository.Update(book);
+            _unitOfWork.CommitTransaction();
         }
         private Book Map (BookDto dto)
         {

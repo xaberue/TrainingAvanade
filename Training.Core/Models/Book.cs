@@ -14,5 +14,12 @@ namespace Training.Core.Models
         public string Name { get; set; }
         public string Author { get; set; }
         public bool IsDeleted { get; set; }
+
+        public ICollection<Reservation> Reservations { get; set; }
+
+        public Book()
+        {
+            Reservations = Enumerable.Empty<Reservation>().ToList();
+        }
     }
 }

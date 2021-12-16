@@ -10,14 +10,15 @@ namespace Training.DAL
 {
     public class UserRepository : IUserRepository
     {
-        private List<User> _users = new List<User>
+        private readonly TrainingDbContext _trainingDbContext;
+
+        public UserRepository(TrainingDbContext trainingDbContext)
         {
-            new User { Id = Guid.NewGuid(), Name = "User1", Password = "Test1234", NationalIdentifier = "12345678A"},
-            new User { Id = Guid.NewGuid(), Name = "User2", Password = "Test1234", NationalIdentifier = "12345678B"}
-        };
+            _trainingDbContext = trainingDbContext;
+        }
         public User Get(string username, string password)
         {
-            return _users.FirstOrDefault(x => x.Name == username && x.Password == password);
+            return _trainingDbContext.Users.FirstOrDefault(x => x.Name == username && x.Password == password);
         }
     }
 }

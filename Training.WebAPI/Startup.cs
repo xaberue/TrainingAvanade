@@ -28,6 +28,8 @@ namespace Training.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("DbConnection");
+
             services.AddLogging(loggingBuilder => {
                 loggingBuilder.AddFile("app.log", append: true);
             });
@@ -43,10 +45,16 @@ namespace Training.WebAPI
 
             services.AddTransient<ICustomDateTimeProvider, CustomDateTimeProvider>();
             services.AddTransient<IBookService, BookService>();
-            services.AddSingleton<IBookRepository, BookRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IReservationService, ReservationService>();
-            services.AddSingleton<IReservationRepository, ReservationRepository>();
-            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddTransient<IReservationRepository, ReservationRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddScoped(x => new TrainingDbContext(connectionString));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<RequestCultureMiddleware>();
+            services.AddScoped<RequestLoggingMiddleware>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -62,6 +70,9 @@ namespace Training.WebAPI
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<RequestCultureMiddleware>();
+            app.UseMiddleware<RequestLoggingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
