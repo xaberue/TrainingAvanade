@@ -55,6 +55,7 @@ namespace Training.WebAPI
             services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddScoped(x => new TrainingDbContext(connectionString));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<ClientActionInvokedMiddleware>();
             services.AddScoped<RequestCultureMiddleware>();
