@@ -5,6 +5,10 @@ namespace Training.DAL
     public class UnitOfWork : IUnitOfWork
     {
 
+        private IUserRepository _userRepository;
+        private IBookRepository _bookRepository;
+        private IReservationRepository _reservationRepository;
+
         private readonly TrainingDbContext _context;
 
 
@@ -12,12 +16,6 @@ namespace Training.DAL
         {
             _context = context;
         }
-
-
-        private IUserRepository _userRepository;
-        private IBookRepository _bookRepository;
-        private IReservationRepository _reservationRepository;
-
 
         public IUserRepository UserRepository 
         { 
