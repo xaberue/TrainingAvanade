@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Training.WebAPI.Controllers.Helpers;
+using Training.WebAPI.Helpers;
 
 namespace Training.WebAPI.Controllers
 {

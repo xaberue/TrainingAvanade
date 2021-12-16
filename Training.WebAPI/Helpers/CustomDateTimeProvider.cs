@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Training.WebAPI.Controllers.Helpers
+namespace Training.WebAPI.Helpers
 {
     public interface ICustomDateTimeProvider
     {
