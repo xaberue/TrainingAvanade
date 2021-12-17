@@ -7,14 +7,23 @@ namespace Training.WebAPI
     {
         public static void Main(string[] args)
         {
-            Host.CreateDefaultBuilder(args)
-              .ConfigureWebHostDefaults(webBuilder =>
-              {
-                  webBuilder.UseStartup<Startup>();
-              })
-              .Build()
-              .Run();
+            CreateHostBuilder(args)
+                .Build()
+                .Run();
+            //Host.CreateDefaultBuilder(args)
+            //  .ConfigureWebHostDefaults(webBuilder =>
+            //  {
+            //      webBuilder.UseStartup<Startup>();
+            //  })
+            //  .Build()
+            //  .Run();
         }
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
 
     }
 }

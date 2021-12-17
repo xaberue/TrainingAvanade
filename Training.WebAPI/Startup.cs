@@ -34,27 +34,29 @@ namespace Training.WebAPI
                 loggingBuilder.AddFile("app.log", append: true);
             });
 
+            services.AddAuthentication(AUTH_SCHEMA)
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(AUTH_SCHEMA, null);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Training.WebAPI", Version = "v1" });
             });
 
-            services.AddAuthentication(AUTH_SCHEMA)
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(AUTH_SCHEMA, null);
+            services.AddScoped<RequestCultureMiddleware>();
+            services.AddScoped<RequestLoggingMiddleware>();
 
             services.AddTransient<ICustomDateTimeProvider, CustomDateTimeProvider>();
+
             services.AddTransient<IBookService, BookService>();
-            services.AddTransient<IBookRepository, BookRepository>();
-            services.AddTransient<IReservationService, ReservationService>();
-            services.AddTransient<IReservationRepository, ReservationRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IReservationService, ReservationService>();            
 
             services.AddScoped(x => new TrainingDbContext(connectionString));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            services.AddScoped<RequestCultureMiddleware>();
-            services.AddScoped<RequestLoggingMiddleware>();
+                        
+            services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IReservationRepository, ReservationRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
