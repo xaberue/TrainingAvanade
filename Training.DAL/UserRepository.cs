@@ -15,8 +15,8 @@ namespace Training.DAL
         }
 
         public User Get(string username, string password)
-        {
-            return _trainingDbContext.Users
+        {            
+            return _trainingDbContext.Users                
                 .FirstOrDefault(x => x.Name == username && x.Password == password);
         }
 
