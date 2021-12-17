@@ -6,7 +6,7 @@ namespace Training.Core.Repositories
 {
     public interface IReservationRepository
     {
-        IEnumerable<Reservation> GetByUser(User user);
+        IEnumerable<Reservation> GetByUser(Guid userId);
         Reservation GetById(Guid reservationId);
         void Update(Reservation reservation);
         void Create(Reservation reservation);

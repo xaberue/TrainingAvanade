@@ -9,9 +9,9 @@ namespace Training.Application.Reservations
     public class ReservationDto
     {
         public Guid Id { get; set; }
+        public string BookISBN { get; set; }
+        public string UserIdentifier { get; set; }
         public DateTime CreationDate { get; set; }
-        public DateTime ReturnDate { get; set; }
-        public Guid UserId { get; set; }
-        public Guid BookId { get; set; }
+        public DateTime ReturnDate { get; set; }        
     }
 }
