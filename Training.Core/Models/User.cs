@@ -14,7 +14,6 @@ namespace Training.Core.Models
 
         public ICollection<Reservation> Reservations { get; set; }
 
-
         public User()
         {
             Reservations = Enumerable.Empty<Reservation>().ToList();
