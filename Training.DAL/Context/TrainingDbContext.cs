@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Training.Core.Models;
 
-namespace Training.DAL
+namespace Training.DAL.Context
 {
     public class TrainingDbContext : DbContext
     {

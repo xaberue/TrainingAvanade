@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Training.Core.Models;
 using Training.Core.Repositories;
+using Training.DAL.Base;
+using Training.DAL.Context;
 
-namespace Training.DAL
+namespace Training.DAL.Implementations
 {
-    public class ReservationRepository : IReservationRepository
+    public class ReservationRepository : RepositoryBase, IReservationRepository
     {
 
-        private readonly TrainingDbContext _trainingDbContext;
-
-
         public ReservationRepository(TrainingDbContext trainingDbContext)
-        {
-            _trainingDbContext = trainingDbContext;
-        }
+             : base(trainingDbContext)
+        { }
 
 
         public void Create(Reservation reservation)

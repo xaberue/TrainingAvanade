@@ -1,6 +1,7 @@
 ﻿using Training.Core.Repositories;
+using Training.DAL.Context;
 
-namespace Training.DAL
+namespace Training.DAL.Implementations
 {
     public class UnitOfWork : IUnitOfWork
     {
