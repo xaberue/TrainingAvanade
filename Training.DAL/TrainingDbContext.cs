@@ -9,6 +9,7 @@ namespace Training.DAL
         public DbSet<User> Users { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Album> Albums { get; set; }
 
         public TrainingDbContext(string connectionString)
         {
@@ -32,6 +33,10 @@ namespace Training.DAL
                 x.HasKey(x => x.Id);
                 x.HasIndex(x => x.ISBN).IsUnique();
                 x.Property(x => x.ISBN).HasMaxLength(15);
+            });
+            modelBuilder.Entity<Album>(x =>
+            {
+                x.HasKey(x => x.Id);
             });
             modelBuilder.Entity<Reservation>(x =>
             {

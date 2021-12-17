@@ -11,6 +11,7 @@ namespace Training.Core.Repositories
         public IUserRepository UserRepository { get; }
         public IBookRepository BookRepository { get; }
         public IReservationRepository ReservationRepository { get; }
+        public IAlbumRepository AlbumRepository { get; }
 
         bool CommitTransaction();
     }
