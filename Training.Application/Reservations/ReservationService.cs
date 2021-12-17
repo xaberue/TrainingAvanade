@@ -69,15 +69,15 @@ namespace Training.Application.Reservations
             };
         }
 
-        private Reservation MapDto(ReservationDto entity, Book book, User user)
+        private Reservation MapDto(ReservationDto dto, Book book, User user)
         {
             return new Reservation
             {
-                Id = entity.Id,
+                Id = dto.Id,
                 User = user,
                 Book = book,
-                CreationDate = entity.CreationDate,
-                ReturnDate = entity.ReturnDate,
+                CreationDate = dto.CreationDate,
+                ReturnDate = dto.ReturnDate,
             };
         }
     }
