@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
-namespace Training.DAL.Auth
+namespace Training.Core.Models
 {
     public partial class Role
     {

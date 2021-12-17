@@ -2,19 +2,17 @@
 using System.Linq;
 using Training.Core.Models;
 using Training.Core.Repositories;
+using Training.DAL.Base;
+using Training.DAL.Context;
 
-namespace Training.DAL
+namespace Training.DAL.Implementations
 {
-    public class BookRepository : IBookRepository
+    public class BookRepository : RepositoryBase, IBookRepository
     {
 
-        private readonly TrainingDbContext _trainingDbContext;
-
-
         public BookRepository(TrainingDbContext trainingDbContext)
-        {
-            _trainingDbContext = trainingDbContext;
-        }
+            : base(trainingDbContext)
+        { }
 
 
         public void Create(Book book)

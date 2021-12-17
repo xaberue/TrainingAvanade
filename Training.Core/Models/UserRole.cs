@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
-namespace Training.DAL.Auth
+namespace Training.Core.Models
 {
     public partial class UserRole
     {
@@ -11,6 +9,6 @@ namespace Training.DAL.Auth
         public Guid RoleId { get; set; }
 
         public virtual Role Role { get; set; }
-        public virtual User User { get; set; }
+        public virtual UserAuth User { get; set; }
     }
 }

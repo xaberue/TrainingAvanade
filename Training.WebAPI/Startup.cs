@@ -9,7 +9,8 @@ using Microsoft.OpenApi.Models;
 using Training.Application.Books;
 using Training.Application.Reservations;
 using Training.Core.Repositories;
-using Training.DAL;
+using Training.DAL.Context;
+using Training.DAL.Implementations;
 using Training.WebAPI.Helpers;
 
 namespace Training.WebAPI
@@ -55,6 +56,7 @@ namespace Training.WebAPI
             services.AddTransient<IReservationService, ReservationService>();            
 
             services.AddScoped(x => new TrainingDbContext(connectionString));
+            services.AddScoped(x => new AuthContext(connectionString));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<IBookRepository, BookRepository>();

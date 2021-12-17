@@ -1,21 +1,19 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Training.Core.Models;
 
-#nullable disable
-
-namespace Training.DAL.Auth
+namespace Training.DAL.Context
 {
     public partial class AuthContext : DbContext
     {
-        public AuthContext()
+
+        private readonly string _connectionString;
+
+
+        public AuthContext(string connectionString)
         {
+            _connectionString = connectionString;
         }
 
-        public AuthContext(DbContextOptions<AuthContext> options)
-            : base(options)
-        {
-        }
 
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleClaim> RoleClaims { get; set; }
@@ -27,11 +25,7 @@ namespace Training.DAL.Auth
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=Auth;Integrated Security=True");
-            }
+            optionsBuilder.UseSqlServer(_connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -70,7 +64,7 @@ namespace Training.DAL.Auth
                     .HasForeignKey(d => d.RoleId);
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<UserAuth>(entity =>
             {
                 entity.ToTable("Users", "Auth");
 

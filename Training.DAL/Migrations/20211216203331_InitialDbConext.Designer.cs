@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Training.DAL;
+using Training.DAL.Context;
 
 namespace Training.DAL.Migrations
 {
@@ -79,7 +80,7 @@ namespace Training.DAL.Migrations
                     b.ToTable("Reservations");
                 });
 
-            modelBuilder.Entity("Training.Core.Models.User", b =>
+            modelBuilder.Entity("Training.Core.Models.UserAuth", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,7 +111,7 @@ namespace Training.DAL.Migrations
                         .WithMany("Reservations")
                         .HasForeignKey("BookId");
 
-                    b.HasOne("Training.Core.Models.User", "User")
+                    b.HasOne("Training.Core.Models.UserAuth", "User")
                         .WithMany("Reservations")
                         .HasForeignKey("UserId");
 
@@ -124,7 +125,7 @@ namespace Training.DAL.Migrations
                     b.Navigation("Reservations");
                 });
 
-            modelBuilder.Entity("Training.Core.Models.User", b =>
+            modelBuilder.Entity("Training.Core.Models.UserAuth", b =>
                 {
                     b.Navigation("Reservations");
                 });

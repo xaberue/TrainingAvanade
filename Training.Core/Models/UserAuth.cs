@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
-namespace Training.DAL.Auth
+namespace Training.Core.Models
 {
-    public partial class User
+    public partial class UserAuth
     {
-        public User()
+        public UserAuth()
         {
             UserClaims = new HashSet<UserClaim>();
             UserLogins = new HashSet<UserLogin>();

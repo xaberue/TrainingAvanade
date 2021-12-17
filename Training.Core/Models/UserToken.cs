@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-#nullable disable
-
-namespace Training.DAL.Auth
+namespace Training.Core.Models
 {
     public partial class UserToken
     {
@@ -12,6 +9,6 @@ namespace Training.DAL.Auth
         public string Name { get; set; }
         public string Value { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual UserAuth User { get; set; }
     }
 }
