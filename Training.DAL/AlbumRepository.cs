@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Training.Core.Repositories;
 using Training.Core.Models;
 using System.Linq;
+using Training.DAL.Context;
 
 namespace Training.DAL
 {
@@ -27,7 +28,7 @@ namespace Training.DAL
 
         public Album Get(string id)
         {
-            return _trainingDbContext.Albums.FirstOrDefault(x => x.Id.ToString() == id.ToString());
+            return _trainingDbContext.Albums.FirstOrDefault(x => x.Id.ToString() == id);
 
         }
     }
