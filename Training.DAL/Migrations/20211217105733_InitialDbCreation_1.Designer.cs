@@ -3,16 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Training.DAL;
-using Training.DAL.Context;
 
 namespace Training.DAL.Migrations
 {
     [DbContext(typeof(TrainingDbContext))]
-    partial class TrainingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211217105733_InitialDbCreation_1")]
+    partial class InitialDbCreation_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

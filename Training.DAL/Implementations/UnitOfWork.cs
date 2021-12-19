@@ -9,6 +9,7 @@ namespace Training.DAL.Implementations
         private IUserRepository _userRepository;
         private IBookRepository _bookRepository;
         private IReservationRepository _reservationRepository;
+        private IAlbumRepository _albumRepository;
 
         private readonly TrainingDbContext _context;
 
@@ -45,6 +46,16 @@ namespace Training.DAL.Implementations
                 if (_reservationRepository == null)
                     _reservationRepository = new ReservationRepository(_context);
                 return _reservationRepository;
+            }
+        }
+
+        public IAlbumRepository AlbumRepository
+        {
+            get
+            {
+                if (_albumRepository == null)
+                    _albumRepository = new AlbumRepository(_context);
+                return _albumRepository;
             }
         }
 

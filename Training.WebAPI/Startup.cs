@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Training.Application.Albums;
 using Training.Application.Books;
 using Training.Application.Reservations;
 using Training.Core.Repositories;
@@ -53,7 +54,8 @@ namespace Training.WebAPI
             services.AddTransient<ICustomDateTimeProvider, CustomDateTimeProvider>();
 
             services.AddTransient<IBookService, BookService>();
-            services.AddTransient<IReservationService, ReservationService>();            
+            services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IAlbumService, AlbumService>();
 
             services.AddScoped(x => new TrainingDbContext(connectionString));
             services.AddScoped(x => new AuthContext(connectionString));
@@ -62,6 +64,8 @@ namespace Training.WebAPI
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IReservationRepository, ReservationRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IAlbumRepository, AlbumRepository>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
